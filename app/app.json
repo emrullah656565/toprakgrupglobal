@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Toprak One",
+    "slug": "toprak-one",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "package": "com.toprakgrupglobal.toprakone"
+    },
+    "ios": {
+      "bundleIdentifier": "com.toprakgrupglobal.toprakone",
+      "supportsTablet": true
+    }
+  }
+}
