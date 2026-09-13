@@ -1,9 +1,10 @@
 {
   "expo": {
     "name": "Toprak Lastik",
+    "description": "Canlı stok, akıllı lastik arama, fiyat alarmı ve güvenli alışveriş deneyimi.",
     "slug": "toprak-one",
     "owner": "toprakgrup",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "icon": "./assets/icon.png",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
@@ -11,7 +12,8 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Toprak Lastik, lastik ebatını kamerayla okuyabilmek için kameraya erişmek istiyor."
+          "cameraPermission": "Toprak Lastik, lastik ebatını kamerayla okuyabilmek için kameraya erişmek istiyor.",
+          "recordAudioAndroid": false
         }
       ],
       [
@@ -23,7 +25,11 @@
     ],
     "android": {
       "package": "com.toprakgrupglobal.toprakone",
-      "versionCode": 6,
+      "versionCode": 7,
+      "softwareKeyboardLayoutMode": "resize",
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#080808"
@@ -32,7 +38,7 @@
     "ios": {
       "bundleIdentifier": "com.toprakgrupglobal.toprakone",
       "supportsTablet": true,
-      "buildNumber": "6"
+      "buildNumber": "7"
     },
     "splash": {
       "image": "./assets/splash-icon.png",
