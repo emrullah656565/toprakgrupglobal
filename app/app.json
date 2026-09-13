@@ -2,6 +2,7 @@
   "expo": {
     "name": "Toprak One",
     "slug": "toprak-one",
+    "owner": "toprakgrup",
     "version": "0.2.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
@@ -19,6 +20,11 @@
     "ios": {
       "bundleIdentifier": "com.toprakgrupglobal.toprakone",
       "supportsTablet": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0fb1935c-0ddc-4e43-ad9a-8d4e688e2849"
+      }
     }
   }
 }
