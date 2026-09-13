@@ -3,7 +3,7 @@
     "name": "Toprak One",
     "slug": "toprak-one",
     "owner": "toprakgrup",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
     "plugins": [
@@ -16,7 +16,7 @@
       [
         "expo-notifications",
         {
-          "defaultChannel": "price-alerts"
+          "defaultChannel": "default"
         }
       ]
     ],
