@@ -1,0 +1,6 @@
+app/node_modules/
+app/.expo/
+app/dist-check/
+app/.env
+app/.env.*
+*.log
