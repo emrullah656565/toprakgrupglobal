@@ -1,13 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
-  <title id="title">Toprak Grup Global TG Logosu</title>
-  <desc id="desc">Altın TG monogramı ve küresel ticaret halkaları</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 170" role="img" aria-labelledby="title desc">
+  <title id="title">Toprak Grup Global</title>
+  <desc id="desc">Altın TG monogramı ve Toprak Grup Global kelime logosu</desc>
   <defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5dda0"/><stop offset=".48" stop-color="#d7b45b"/><stop offset="1" stop-color="#9b7424"/></linearGradient></defs>
-  <rect x="5" y="5" width="230" height="230" rx="42" fill="#07111f" stroke="url(#gold)" stroke-width="6"/>
-  <circle cx="120" cy="120" r="78" fill="none" stroke="url(#gold)" stroke-width="3"/>
-  <ellipse cx="120" cy="120" rx="78" ry="31" fill="none" stroke="#d7b45b" stroke-width="2" opacity=".62"/>
-  <ellipse cx="120" cy="120" rx="31" ry="78" fill="none" stroke="#d7b45b" stroke-width="2" opacity=".62"/>
-  <path d="M43 120h154M120 42v156" stroke="#d7b45b" stroke-width="2" opacity=".38"/>
-  <path d="M58 76h69v18h-24v70H82V94H58z" fill="url(#gold)"/>
-  <path d="M177 90c-8-10-20-15-34-15-28 0-48 20-48 46 0 27 20 46 49 46 14 0 27-4 37-12v-42h-40v17h20v15c-5 3-10 4-16 4-17 0-29-12-29-29 0-16 12-28 29-28 9 0 16 3 22 9z" fill="url(#gold)"/>
-  <path d="M178 54l8 3-7 4-1 9-6-7-9 2 5-7-4-8 9 3z" fill="#f5dda0"/>
+  <g transform="translate(8 8)">
+    <circle cx="77" cy="77" r="70" fill="none" stroke="url(#gold)" stroke-width="4"/>
+    <path d="M34 43h78v15H81v61H64V58H34z" fill="url(#gold)"/>
+    <path d="M111 66c-8-9-18-13-31-13-22 0-38 16-38 38s16 38 39 38c13 0 25-4 34-12V87H83v14h16v10c-5 2-10 3-16 3-14 0-24-10-24-24 0-13 10-23 24-23 8 0 14 3 19 8z" fill="url(#gold)"/>
+    <path d="M25 111c25 20 78 25 111-4" fill="none" stroke="#d7b45b" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  </g>
+  <line x1="178" y1="28" x2="178" y2="142" stroke="#d7b45b" stroke-width="2" opacity=".75"/>
+  <text x="210" y="88" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="62" font-weight="800" letter-spacing="5">TOPRAK</text>
+  <text x="214" y="127" fill="#d7b45b" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="700" letter-spacing="11">GRUP GLOBAL</text>
 </svg>
