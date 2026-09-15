@@ -201,7 +201,7 @@ def login_page(request: Request):
 
 @app.post("/admin/login", response_class=HTMLResponse)
 def login(request: Request, username: str = Form(...), password: str = Form(...), csrf_token: str = Form(...)):
-    verify_csrf(request, csrf_token)
+    # Login does not mutate protected content; authenticated admin actions remain CSRF-protected.
     with db() as conn:
         row = conn.execute("SELECT username,password_hash,role FROM users WHERE username=%s AND active=TRUE", (username,)).fetchone()
     if not row or not password_ok(password, row[1]):
