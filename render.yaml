@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: toprak-grup-admin
+    runtime: python
+    plan: starter
+    region: frankfurt
+    rootDir: admin
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: toprak-grup-admin-db
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_INITIAL_PASSWORD
+        sync: false
+      - key: PUBLIC_ORIGIN
+        value: https://toprakgrupglobal.com.tr
+
+databases:
+  - name: toprak-grup-admin-db
+    plan: basic-256mb
+    region: frankfurt
+    databaseName: toprak_admin
+    user: toprak_admin
+
