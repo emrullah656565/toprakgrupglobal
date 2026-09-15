@@ -31,6 +31,20 @@ app.mount("/admin/static", StaticFiles(directory=os.path.join(BASE_DIR, "static"
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 
+def format_dt(value, with_time=False):
+    if not value:
+        return "—"
+    if isinstance(value, str):
+        try:
+            value = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError:
+            return value
+    return value.strftime("%d.%m.%Y %H:%M" if with_time else "%d.%m.%Y")
+
+
+templates.env.filters["date_tr"] = format_dt
+
+
 class SQLiteConnection:
     def __init__(self, path):
         self.conn = sqlite3.connect(path)
