@@ -4,6 +4,7 @@ import hmac
 import json
 import os
 import secrets
+import sqlite3
 import uuid
 from datetime import datetime, timezone
 from typing import Optional
@@ -30,10 +31,29 @@ app.mount("/admin/static", StaticFiles(directory=os.path.join(BASE_DIR, "static"
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 
+class SQLiteConnection:
+    def __init__(self, path):
+        self.conn = sqlite3.connect(path)
+
+    def execute(self, sql, params=()):
+        sql = sql.replace("%s", "?").replace("NOW()", "CURRENT_TIMESTAMP").replace("'{}'::jsonb", "'{}'")
+        sql = sql.replace("BIGSERIAL PRIMARY KEY", "INTEGER PRIMARY KEY AUTOINCREMENT")
+        sql = sql.replace("TIMESTAMPTZ", "TIMESTAMP").replace("JSONB", "TEXT").replace("BYTEA", "BLOB")
+        return self.conn.execute(sql, params)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        if exc_type: self.conn.rollback()
+        else: self.conn.commit()
+        self.conn.close()
+
+
 def db():
-    if not DATABASE_URL:
-        raise RuntimeError("DATABASE_URL tanımlı değil")
-    return psycopg.connect(DATABASE_URL)
+    if DATABASE_URL:
+        return psycopg.connect(DATABASE_URL)
+    return SQLiteConnection(os.environ.get("SQLITE_PATH", "/tmp/toprak-admin.db"))
 
 
 def password_hash(password: str, salt: Optional[bytes] = None) -> str:
