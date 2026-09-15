@@ -4,7 +4,7 @@
     "description": "Canlı stok, akıllı lastik arama, fiyat alarmı ve güvenli alışveriş deneyimi.",
     "slug": "toprak-one",
     "owner": "toprakgrup",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "icon": "./assets/icon.png",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
@@ -25,7 +25,7 @@
     ],
     "android": {
       "package": "com.toprakgrupglobal.toprakone",
-      "versionCode": 8,
+      "versionCode": 9,
       "allowBackup": false,
       "softwareKeyboardLayoutMode": "resize",
       "blockedPermissions": [
@@ -40,7 +40,7 @@
     "ios": {
       "bundleIdentifier": "com.toprakgrupglobal.toprakone",
       "supportsTablet": true,
-      "buildNumber": "8"
+      "buildNumber": "9"
     },
     "splash": {
       "image": "./assets/splash-icon.png",
