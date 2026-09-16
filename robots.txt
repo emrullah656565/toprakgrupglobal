@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://toprakgrupglobal.com.tr/sitemap.xml
+
