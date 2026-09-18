@@ -35,6 +35,26 @@ jobs:
         run: |
           printf '%s' "$PACKED_SCRIPT" | base64 -d | xz -d > build_multilang.py
           python build_multilang.py
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          replacements = {
+              'en': [('Earth Group Global','Toprak Grup Global'),('Earth Group','Toprak Grup'),('Global  Global','Global'),('Tradeare Tags','Trade'),('Borders<span>','Borders <span>')],
+              'fa': [('زمین گروه جهانی','توپراک گروپ گلوبال'),('گروه جهانی زمین','توپراک گروپ گلوبال'),('مرزها<span>','مرزها <span>')],
+              'ar': [('مجموعة التربة العالمية','توبراك جروب جلوبال'),('المجموعة العالمية للتربة','توبراك جروب جلوبال'),('الحدود<span>','الحدود <span>')]
+          }
+          titles = {
+              'en/index.html':'Toprak Grup Global | Import, Export and International Trade',
+              'fa/index.html':'توپراک گروپ گلوبال | واردات، صادرات و تجارت بین‌المللی',
+              'ar/index.html':'توبراك جروب جلوبال | الاستيراد والتصدير والتجارة الدولية'
+          }
+          for lang in ('en','fa','ar'):
+              for path in Path(lang).glob('*.html'):
+                  text=path.read_text(encoding='utf-8')
+                  for old,new in replacements[lang]: text=text.replace(old,new)
+                  if str(path) in titles: text=re.sub(r'<title>.*?</title>',f'<title>{titles[str(path)]}</title>',text,count=1)
+                  path.write_text(text,encoding='utf-8')
+          PY
           rm -f build_multilang.py en/translations.json fa/translations.json ar/translations.json .translation-cache-*.json
       - name: Publish generated pages
         run: |
