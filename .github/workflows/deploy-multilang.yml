@@ -41,7 +41,7 @@ jobs:
           replacements = {
               'en': [('Earth Group Global','Toprak Grup Global'),('Earth Group','Toprak Grup'),('Global  Global','Global'),('Tradeare Tags','Trade'),('Borders<span>','Borders <span>')],
               'fa': [('زمین گروه جهانی','توپراک گروپ گلوبال'),('گروه جهانی زمین','توپراک گروپ گلوبال'),('مرزها<span>','مرزها <span>')],
-              'ar': [('مجموعة التربة العالمية','توبراك جروب جلوبال'),('المجموعة العالمية للتربة','توبراك جروب جلوبال'),('الحدود<span>','الحدود <span>')]
+              'ar': [('مجموعة التربة العالمية','توبراك جروب جلوبال'),('المجموعة العالمية للتربة','توبراك جروب جلوبال'),('الحدود<span>','الحدود <span>'),('ForEIGN TRADE Home','التجارة الخارجية'),('International product, market and process coordination.','تنسيق دولي للمنتجات والأسواق والعمليات التجارية.'),('تخزين النقل','النقل والتخزين'),('التحقق من المصانع ومطابقة أجهزة الاستلام','التحقق من المصنّعين وربط البائعين بالمشترين'),('تفاصيل الرؤية','عرض التفاصيل'),('الحصول على اقتباس من المنتجات وفقاً للممتلكات التقنية، الكمية، المصدر، شكل التسليم، السعر المستهدف.','احصل على عرض سعر مخصص حسب المواصفات الفنية والكمية والمنشأ وشروط التسليم والسعر المستهدف.'),('HAMMADDE','المواد الخام'),('مواد راو البلاستيكية','المواد الخام البلاستيكية'),('GPPS and industrial raw material supply.','توريد مادة GPPS والمواد الخام الصناعية.'),('الهيكل النموذجي','الإنشاءات والمعادن'),('Profile, metal and project-based building products.','توريد المقاطع المعدنية ومنتجات البناء المخصصة للمشروعات.'),('GIDA','الأغذية'),('AUTOMOTIVE','السيارات'),('إمدادات متعددة الأغراض للمسافرين والمركبات التجارية.','توريد إطارات متعددة العلامات التجارية لسيارات الركوب والمركبات التجارية.'),('Review Trading Network →','استعرض شبكة التجارة ←'),('Create a Quote Request →','أنشئ طلب عرض سعر ←')]
           }
           titles = {
               'en/index.html':'Toprak Grup Global | Import, Export and International Trade',
@@ -54,6 +54,9 @@ jobs:
                   for old,new in replacements[lang]: text=text.replace(old,new)
                   if str(path) in titles: text=re.sub(r'<title>.*?</title>',f'<title>{titles[str(path)]}</title>',text,count=1)
                   path.write_text(text,encoding='utf-8')
+          for path in [Path('site.js'),Path('en/site.js'),Path('fa/site.js'),Path('ar/site.js')]:
+              text=path.read_text(encoding='utf-8').replace('>AR</a>','>العربية</a>')
+              path.write_text(text,encoding='utf-8')
           PY
           rm -f build_multilang.py en/translations.json fa/translations.json ar/translations.json .translation-cache-*.json
       - name: Publish generated pages
