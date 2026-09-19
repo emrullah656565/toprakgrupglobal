@@ -63,9 +63,10 @@ jobs:
           from pathlib import Path
           for folder in (Path('.'),Path('en'),Path('fa'),Path('ar')):
               for page in folder.glob('*.html'):
-                  content=page.read_text(encoding='utf-8').replace('styles.css"','styles.css?v=5"')
+                  content=page.read_text(encoding='utf-8').replace('styles.css?v=5"','styles.css?v=6"').replace('styles.css"','styles.css?v=6"')
                   page.write_text(content,encoding='utf-8')
           PY
+          if ! grep -q 'two-row-nav' styles.css; then printf '%s\n' '/*two-row-nav*/@media(min-width:801px) and (max-width:1400px){.nav{height:138px;flex-wrap:wrap;align-content:center;gap:0 14px}.lang-switch{order:1;margin-left:auto}.header-cta{order:2;display:flex}.navlinks{position:static;order:3;flex:0 0 100%;display:flex;flex-direction:row;align-items:center;justify-content:center;width:100%;height:43px;margin:0;padding:0;border:0;background:transparent;gap:4px}.navlinks>a{width:auto;padding:12px 11px;font-size:.76rem}.menu{display:none}.hero-inner{padding-top:195px}.page-hero .hero-inner{padding-top:190px}}' >> styles.css; fi
           rm -f build_multilang.py en/translations.json fa/translations.json ar/translations.json .translation-cache-*.json
       - name: Publish generated pages
         run: |
