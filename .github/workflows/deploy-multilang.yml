@@ -65,10 +65,10 @@ jobs:
               prefix='' if folder == Path('.') else '../'
               for page in folder.glob('*.html'):
                   content=page.read_text(encoding='utf-8')
-                  content=re.sub(r'href="(?:\.\./)?styles\.css(?:\?v=\d+)?"',f'href="{prefix}styles.css?v=10"',content)
+                  content=re.sub(r'href="(?:\.\./)?styles\.css(?:\?v=\d+)?"',f'href="{prefix}styles.css?v=11"',content)
                   page.write_text(content,encoding='utf-8')
           PY
-          printf '%s\n' '/*brand-scale*/@media(min-width:801px){.brand{gap:16px}.logo{width:76px;height:76px}.legal-brand{min-width:300px}.legal-brand b{font-size:1rem;letter-spacing:.06em}.legal-brand small{font-size:.59rem;letter-spacing:.09em;line-height:1.5}}/*two-row-nav*/@media(min-width:801px) and (max-width:1600px){.nav{height:146px;flex-wrap:wrap;align-content:center;gap:0 14px}.lang-switch{order:1;margin-left:auto}.header-cta{order:2;display:flex}.navlinks{position:static;order:3;flex:0 0 100%;display:flex;flex-direction:row;align-items:center;justify-content:flex-end;width:100%;height:43px;margin:0;padding:0;border:0;background:transparent;gap:4px}.navlinks>a{width:auto;padding:12px 11px;font-size:.76rem}.menu{display:none}.hero-inner{padding-top:195px}.page-hero .hero-inner{padding-top:190px}}' >> styles.css
+          printf '%s\n' '/*brand-scale*/@media(min-width:651px){.brand{gap:16px}.logo{width:76px;height:76px}.legal-brand{min-width:300px}.legal-brand b{font-size:1rem;letter-spacing:.06em}.legal-brand small{font-size:.59rem;letter-spacing:.09em;line-height:1.5}}@media(min-width:651px) and (max-width:800px){.brand{gap:10px}.logo{width:68px;height:68px}.legal-brand{min-width:260px}}/*two-row-nav*/@media(min-width:801px) and (max-width:1600px){.nav{height:146px;flex-wrap:wrap;align-content:center;gap:0 14px}.lang-switch{order:1;margin-left:auto}.header-cta{order:2;display:flex}.navlinks{position:static;order:3;flex:0 0 100%;display:flex;flex-direction:row;align-items:center;justify-content:flex-end;width:100%;height:43px;margin:0;padding:0;border:0;background:transparent;gap:4px}.navlinks>a{width:auto;padding:12px 11px;font-size:.76rem}.menu{display:none}.hero-inner{padding-top:195px}.page-hero .hero-inner{padding-top:190px}}' >> styles.css
           rm -f build_multilang.py en/translations.json fa/translations.json ar/translations.json .translation-cache-*.json
       - name: Publish generated pages
         run: |
