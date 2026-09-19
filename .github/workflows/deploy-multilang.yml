@@ -61,9 +61,12 @@ jobs:
           printf '%s\n' '@media(max-width:1400px){.nav{gap:12px}.navlinks{position:fixed;inset:94px 0 auto;display:none;flex-direction:column;align-items:stretch;padding:18px 4%;background:#04101bfa;border-bottom:1px solid #d7b45b30;margin:0;gap:0}.navlinks.open{display:flex}.navlinks>a{width:100%;padding:12px 4%;font-size:.9rem}.menu{display:block;flex:none}.lang-switch{position:static;flex:none;margin-left:auto}.header-cta{flex:none}}@media(max-width:1200px){.header-cta{display:none}}@media(max-width:650px){.nav{gap:8px}.lang-switch{gap:1px;padding:2px}.lang-switch a{min-width:23px;height:26px;font-size:.56rem}.navlinks{inset:78px 0 auto}}' >> styles.css
           python - <<'PY'
           from pathlib import Path
+          import re
           for folder in (Path('.'),Path('en'),Path('fa'),Path('ar')):
+              prefix='' if folder == Path('.') else '../'
               for page in folder.glob('*.html'):
-                  content=page.read_text(encoding='utf-8').replace('styles.css?v=5"','styles.css?v=6"').replace('styles.css"','styles.css?v=6"')
+                  content=page.read_text(encoding='utf-8')
+                  content=re.sub(r'href="(?:\.\./)?styles\.css(?:\?v=\d+)?"',f'href="{prefix}styles.css?v=7"',content)
                   page.write_text(content,encoding='utf-8')
           PY
           if ! grep -q 'two-row-nav' styles.css; then printf '%s\n' '/*two-row-nav*/@media(min-width:801px) and (max-width:1400px){.nav{height:138px;flex-wrap:wrap;align-content:center;gap:0 14px}.lang-switch{order:1;margin-left:auto}.header-cta{order:2;display:flex}.navlinks{position:static;order:3;flex:0 0 100%;display:flex;flex-direction:row;align-items:center;justify-content:center;width:100%;height:43px;margin:0;padding:0;border:0;background:transparent;gap:4px}.navlinks>a{width:auto;padding:12px 11px;font-size:.76rem}.menu{display:none}.hero-inner{padding-top:195px}.page-hero .hero-inner{padding-top:190px}}' >> styles.css; fi
