@@ -1,0 +1,27 @@
+name: Daily SEO audit
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 5 * * *'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run read-only SEO audit
+        run: |
+          mkdir -p seo-reports
+          python3 scripts/seo_audit.py 'https://toprakgrupglobal.com.tr' > seo-reports/report.json
+          python3 -m json.tool seo-reports/report.json > /dev/null
+          cat seo-reports/report.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: seo-audit-report
+          path: seo-reports/report.json
+          retention-days: 30
