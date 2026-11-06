@@ -20,8 +20,14 @@ jobs:
           python3 scripts/seo_audit.py 'https://toprakgrupglobal.com.tr' > seo-reports/report.json
           python3 -m json.tool seo-reports/report.json > /dev/null
           cat seo-reports/report.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Deep HTTP SEO diagnostics
+        run: |
+          python3 scripts/seo_deep_audit.py 'https://toprakgrupglobal.com.tr' '/en/' '/fa/' '/ar/' > seo-reports/deep-report.json
+          python3 -m json.tool seo-reports/deep-report.json > /dev/null
+          cat seo-reports/deep-report.json >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: seo-audit-report
-          path: seo-reports/report.json
+          path: seo-reports/*.json
           retention-days: 30
